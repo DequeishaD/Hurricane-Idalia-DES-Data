@@ -40,18 +40,18 @@ pd.options.display.max_rows = 9999
 # Reading in Mobile_Logistic_Nodes,Planned Network Path Locations
 # And Logistic Nodes CSV Files
 
-mln_df = pd.read_csv('/Users/dequeishadiggs/Documents/DIS-9903A/Dissertation/Notes/Data/Updated_CSV/Mobile_Logistic_Nodes/Mobile_Logistic_Nodes.csv')
-pnpl_df = pd.read_csv('/Users/dequeishadiggs/Documents/DIS-9903A/Dissertation/Notes/Data/Updated_CSV/Planned Network Path Locations/Planned Network Path Locations.csv')
-ln_df = pd.read_csv('/Users/dequeishadiggs/Documents/DIS-9903A/Dissertation/Notes/Data/Updated_CSV/Logistic Nodes/Logistic Nodes.csv')
-lnh_df = pd.read_csv('/Users/dequeishadiggs/Documents/DIS-9903A/Dissertation/Notes/Data/Updated_CSV/Logistic Nodes/Logistic Nodes Hospitals.csv')
-lns_df = pd.read_csv('/Users/dequeishadiggs/Documents/DIS-9903A/Dissertation/Notes/Data/Updated_CSV/Logistic Nodes/Logistic Nodes Shelters.csv')
-em_df = pd.read_csv('/Users/dequeishadiggs/Documents/DIS-9903A/Dissertation/Notes/Data/Updated_CSV/Evacuation Mean And Nodes/Evacuation_Mean_(mobile_speed_capacity).csv')
-en_df = pd.read_csv('/Users/dequeishadiggs/Documents/DIS-9903A/Dissertation/Notes/Data/Updated_CSV/Evacuation Mean And Nodes/Evacuation_Nodes(evacuation_zones_by_county).csv')
-ena_df = pd.read_csv('/Users/dequeishadiggs/Documents/DIS-9903A/Dissertation/Notes/Data/Updated_CSV/Evacuation Mean And Nodes/Evacuation_Nodes(affected_areas).csv')
-emn_df = pd.read_csv('/Users/dequeishadiggs/Documents/DIS-9903A/Dissertation/Notes/Data/Updated_CSV/Evacuation Mean And Nodes/Evacuation_Mean_(numbers).csv')
+mln_df = pd.read_csv('/workspaces/Hurricane-Idalia-DES-Data/Updated_CSV/Mobile_Logistic_Nodes/Mobile_Logistic_Nodes.csv')
+pnpl_df = pd.read_csv('/workspaces/Hurricane-Idalia-DES-Data/Updated_CSV/Planned Network Path Locations/Planned Network Path Locations.csv')
+ln_df = pd.read_csv('/workspaces/Hurricane-Idalia-DES-Data/Updated_CSV/Logistic Nodes/Logistic Nodes.csv')
+lnh_df = pd.read_csv('/workspaces/Hurricane-Idalia-DES-Data/Updated_CSV/Logistic Nodes/Logistic Nodes Hospitals.csv')
+lns_df = pd.read_csv('/workspaces/Hurricane-Idalia-DES-Data/Updated_CSV/Logistic Nodes/Logistic Nodes Shelters.csv')
+em_df = pd.read_csv('/workspaces/Hurricane-Idalia-DES-Data/Updated_CSV/Evacuation Mean And Nodes/Evacuation_Mean_(mobile_speed_capacity).csv')
+en_df = pd.read_csv('/workspaces/Hurricane-Idalia-DES-Data/Updated_CSV//Evacuation Mean And Nodes/Evacuation_Nodes(evacuation_zones_by_county).csv')
+ena_df = pd.read_csv('/workspaces/Hurricane-Idalia-DES-Data/Updated_CSV/Evacuation Mean And Nodes/Evacuation_Nodes(affected_areas).csv')
+emn_df = pd.read_csv('/workspaces/Hurricane-Idalia-DES-Data/Updated_CSV/Evacuation Mean And Nodes/Evacuation_Mean_(numbers).csv')
 
 # Specifying the Path to the Florida Counties Shapefile by using shapefile
-shapefile_path = '/Users/dequeishadiggs/Documents/DIS-9903A/Dissertation/Notes/Data/Fl_Counties/tl_2023_12_cousub.shp'
+shapefile_path = '/workspaces/Hurricane-Idalia-DES-Data/Updated_CSV/Fl_Counties/tl_2023_12_cousub.shp'
 
 # Creating a shapefile reader object
 sf = shapefile.Reader(shapefile_path)
@@ -301,7 +301,7 @@ class ResponseVehicle:
 # outside of the affdected areas(Blue)
 """
 # Defining the path to the County Boundary Shapefile
-county_shapefile_path = "/Users/dequeishadiggs/Documents/DIS-9903A/Dissertation/Notes/Data/Fl_Counties/tl_2023_12_cousub.shp"
+county_shapefile_path = "/workspaces/Hurricane-Idalia-DES-Data/Updated_CSV/Fl_Counties/tl_2023_12_cousub.shp"
 
 # Creating a function that plots the simulation and affected areas
 def simulation_and_affected_areas(env, evacuation_locations, sites, shelters, vehicles, county_shapefile_path):
@@ -623,7 +623,7 @@ mobilel_df['network_paths'] = ['Path_A', 'Path_B', 'Path_A', 'Path_B', 'Path_A',
 # This portion of the script is used to visualize Hurricane Idalia Shelters and Affected Areas 
 
 # Defining the path to the County Boundary Shapefiles
-county_shapefile_path = "/Users/dequeishadiggs/Documents/DIS-9903A/Dissertation/Notes/Data/Fl_Counties/tl_2023_12_cousub.shp"
+county_shapefile_path = "/workspaces/Hurricane-Idalia-DES-Data/Updated_CSV/Fl_Counties/tl_2023_12_cousub.shp"
 
 # Opening the shapefile from the county_shapefile_path
 sf = shapefile.Reader(county_shapefile_path)
