@@ -7,6 +7,9 @@ Spyder Editor
 #%% The purpose of this script is to perform Data Feature Engineering and Data Exploration before 
 # Conducting a Discrete Event Simulation (DES) for Hurricane Idalia
 
+# Intalling Packages
+! pip install statsmodels
+! pip install tabulate
 #%%
 # Importing Pacakges
 import pandas as pd
