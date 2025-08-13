@@ -2,7 +2,6 @@
 """
 Spyder Editor
 
-This is a temporary script file.
 """
 
 #%% The purpose of this script is to perform Data Feature Engineering and Data Exploration before 
@@ -20,14 +19,14 @@ pd.options.display.max_rows = 9999
 #%%
 # Reading in Mobile_Logistic_Nodes,Planned Network Path Locations
 # And Logistic Nodes CSV Files
-mln_df = pd.read_csv('/Users/dequeishadiggs/Documents/DIS-9903A/Dissertation/Notes/Data/Updated_CSV/Mobile_Logistic_Nodes/Mobile_Logistic_Nodes.csv')
-pnpl_df = pd.read_csv('/Users/dequeishadiggs/Documents/DIS-9903A/Dissertation/Notes/Data/Updated_CSV/Planned Network Path Locations/Planned Network Path Locations.csv')
-ln_df = pd.read_csv('/Users/dequeishadiggs/Documents/DIS-9903A/Dissertation/Notes/Data/Updated_CSV/Logistic Nodes/Logistic Nodes.csv')
-lnh_df = pd.read_csv('/Users/dequeishadiggs/Documents/DIS-9903A/Dissertation/Notes/Data/Updated_CSV/Logistic Nodes/Logistic Nodes Hospitals.csv')
-lns_df = pd.read_csv('/Users/dequeishadiggs/Documents/DIS-9903A/Dissertation/Notes/Data/Updated_CSV/Logistic Nodes/Logistic Nodes Shelters.csv')
-em_df = pd.read_csv('/Users/dequeishadiggs/Documents/DIS-9903A/Dissertation/Notes/Data/Updated_CSV/Evacuation Mean And Nodes/Evacuation_Mean_(mobile_speed_capacity).csv')
-en_df = pd.read_csv('/Users/dequeishadiggs/Documents/DIS-9903A/Dissertation/Notes/Data/Updated_CSV/Evacuation Mean And Nodes/Evacuation_Nodes(evacuation_zones_by_county).csv')
-emn_df = pd.read_csv('/Users/dequeishadiggs/Documents/DIS-9903A/Dissertation/Notes/Data/Updated_CSV/Evacuation Mean And Nodes/Evacuation_Mean_(numbers).csv')
+mln_df = pd.read_csv('/workspaces/Hurricane-Idalia-DES-Data/Updated_CSV/Mobile_Logistic_Nodes/Mobile_Logistic_Nodes.csv')
+pnpl_df = pd.read_csv('/workspaces/Hurricane-Idalia-DES-Data/Updated_CSV/Planned Network Path Locations/Planned Network Path Locations.csv')
+ln_df = pd.read_csv('/workspaces/Hurricane-Idalia-DES-Data/Updated_CSV/Logistic Nodes/Logistic Nodes.csv')
+lnh_df = pd.read_csv('/workspaces/Hurricane-Idalia-DES-Data/Updated_CSV/Logistic Nodes/Logistic Nodes Hospitals.csv')
+lns_df = pd.read_csv('/workspaces/Hurricane-Idalia-DES-Data/Updated_CSV/Logistic Nodes/Logistic Nodes Shelters.csv')
+em_df = pd.read_csv('/workspaces/Hurricane-Idalia-DES-Data/Updated_CSV/Evacuation Mean And Nodes/Evacuation_Mean_(mobile_speed_capacity).csv')
+en_df = pd.read_csv('/workspaces/Hurricane-Idalia-DES-Data/Updated_CSV/Evacuation Mean And Nodes/Evacuation_Nodes(evacuation_zones_by_county).csv')
+emn_df = pd.read_csv('/workspaces/Hurricane-Idalia-DES-Data/Updated_CSV/Evacuation Mean And Nodes/Evacuation_Mean_(numbers).csv')
 
 #%%
 # Adding an id column in mln_df, emn_df, and pnpl_df to merge mln_df to emn_df 
