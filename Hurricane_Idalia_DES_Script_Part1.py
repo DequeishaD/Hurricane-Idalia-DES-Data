@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 """
 Spyder Editor
-
-This is a temporary script file.
 """
 
 #%% The purpose of this script is to conduct Data Integration & Transformation, Data Cleaning, &
@@ -19,19 +17,19 @@ pd.options.display.max_rows = 9999
 # Importing Critcal Facilities (mobile logistic nodes (mln_df), planned network path locations (pnpl_df)
 # logistic nodes (ln_df), evacuation nodes (en_df), and evacuation mean (em_df) ), Highwater data (hw)
 # and Sensor data (sn)) csv files
-hw_df = pd.read_csv('/Users/dequeishadiggs/Documents/DIS-9902A/Chapter3_Week4/Notes/Data/CSV/Hurricane_Idalia_High-water_Mark_Data.csv')
-sn_df = pd.read_csv('/Users/dequeishadiggs/Documents/DIS-9902A/Chapter3_Week4/Notes/Data/CSV/Hurrican_Idalia_Sensor_Data.csv')
-mln_df = pd.read_csv('/Users/dequeishadiggs/Documents/DIS-9902A/Chapter3_Week4/Notes/Data/CSV/Critical Facilities/Mobile_Logistic_Nodes/Bus Terminals.csv')
-em_df = pd.read_csv('/Users/dequeishadiggs/Documents/DIS-9902A/Chapter3_Week4/Notes/Data/CSV/Critical Facilities/Evacuation_Nodes/Evacuation_Mean_(mobile_speed_capacity).csv')
-en_df = pd.read_csv('/Users/dequeishadiggs/Documents/DIS-9902A/Chapter3_Week4/Notes/Data/CSV/Critical Facilities/Evacuation_Nodes/Evacuation_Nodes(evacuation_zones_by_county).csv')
+hw_df = pd.read_csv('/workspaces/Hurricane-Idalia-DES-Data/Updated_CSV/HI_Highwater And Sensor/HI_Highwater.csv')
+sn_df = pd.read_csv('/workspaces/Hurricane-Idalia-DES-Data/Updated_CSV/HI_Highwater And Sensor/HI_Sensor.csv')
+mln_df = pd.read_csv('/workspaces/Hurricane-Idalia-DES-Data/Critical Facilities/Mobile_Logistic_Nodes/Bus Terminals.csv')
+em_df = pd.read_csv('/workspaces/Hurricane-Idalia-DES-Data/Critical Facilities/Evacuation_Nodes/Evacuation_Mean_(mobile_speed_capacity).csv')
+en_df = pd.read_csv('/workspaces/Hurricane-Idalia-DES-Data/Critical Facilities/Evacuation_Nodes/Evacuation_Nodes(evacuation_zones_by_county).csv')
 
 #%%
 # CSV's for final table pnpl_df = coast guard (cg_df), fire stations (fs_df), food banks (fb_df)
 # and national guard (ng_df) datasets
-cg_df = pd.read_csv('/Users/dequeishadiggs/Documents/DIS-9902A/Chapter3_Week4/Notes/Data/CSV/Critical Facilities/Planned_Network_Path_Loctions/Coast Guard.csv')
-fs_df = pd.read_csv('/Users/dequeishadiggs/Documents/DIS-9902A/Chapter3_Week4/Notes/Data/CSV/Critical Facilities/Planned_Network_Path_Loctions/Fire Stations.csv')
-fb_df = pd.read_csv('/Users/dequeishadiggs/Documents/DIS-9902A/Chapter3_Week4/Notes/Data/CSV/Critical Facilities/Planned_Network_Path_Loctions/Food Banks.csv')
-ng_df = pd.read_csv('/Users/dequeishadiggs/Documents/DIS-9902A/Chapter3_Week4/Notes/Data/CSV/Critical Facilities/Planned_Network_Path_Loctions/National Guard.csv')
+cg_df = pd.read_csv('/workspaces/Hurricane-Idalia-DES-Data/Critical Facilities/Planned_Network_Path_Loctions/Coast Guard.csv')
+fs_df = pd.read_csv('/workspaces/Hurricane-Idalia-DES-Data/Critical Facilities/Planned_Network_Path_Loctions/Fire Stations.csv')
+fb_df = pd.read_csv('/workspaces/Hurricane-Idalia-DES-Data/Critical Facilities/Planned_Network_Path_Loctions/Food Banks.csv')
+ng_df = pd.read_csv('/workspaces/Hurricane-Idalia-DES-Data/Critical Facilities/Planned_Network_Path_Loctions/National Guard.csv')
 
 #%%
 # CSV's for final table ln_df = Airports (private) (airpri_df), airports public (airpub_df)
@@ -40,20 +38,20 @@ ng_df = pd.read_csv('/Users/dequeishadiggs/Documents/DIS-9902A/Chapter3_Week4/No
 # emergency operational centers (eoc_df), healthcare facilities (hf_df), hospitals (hos_df), 
 # relief agencies (ra_df), risk shelter inventory general (rsig_df), risk shelter inventory pet friendly (rsipf_df)
 # and and risk shelter inventory special needs (rsisn_df) 
-airpri_df = pd.read_csv('/Users/dequeishadiggs/Documents/DIS-9902A/Chapter3_Week4/Notes/Data/CSV/Critical Facilities/Logistic_Nodes/Airports - Private.csv')
-airpub_df = pd.read_csv('/Users/dequeishadiggs/Documents/DIS-9902A/Chapter3_Week4/Notes/Data/CSV/Critical Facilities/Logistic_Nodes/Airports - Public.csv')
-drcm_df = pd.read_csv('/Users/dequeishadiggs/Documents/DIS-9902A/Chapter3_Week4/Notes/Data/CSV/Critical Facilities/Logistic_Nodes/Disaster Recovery Centers - Mobile.csv')
-drc_df = pd.read_csv('/Users/dequeishadiggs/Documents/DIS-9902A/Chapter3_Week4/Notes/Data/CSV/Critical Facilities/Logistic_Nodes/Disaster Recovery Centers.csv')
-prisch_df = pd.read_csv('/Users/dequeishadiggs/Documents/DIS-9902A/Chapter3_Week4/Notes/Data/CSV/Critical Facilities/Logistic_Nodes/Private Schools.csv')
-pubsch_df = pd.read_csv('/Users/dequeishadiggs/Documents/DIS-9902A/Chapter3_Week4/Notes/Data/CSV/Critical Facilities/Logistic_Nodes/Public Schools.csv')
-emf_df = pd.read_csv('/Users/dequeishadiggs/Documents/DIS-9902A/Chapter3_Week4/Notes/Data/CSV/Critical Facilities/Logistic_Nodes/Emergency Medical Services.csv')
-eoc_df = pd.read_csv('/Users/dequeishadiggs/Documents/DIS-9902A/Chapter3_Week4/Notes/Data/CSV/Critical Facilities/Logistic_Nodes/Emergency Operations Center.csv')
-hf_df = pd.read_csv('/Users/dequeishadiggs/Documents/DIS-9902A/Chapter3_Week4/Notes/Data/CSV/Critical Facilities/Logistic_Nodes/Healthcare Facilities.csv')
-hos_df = pd.read_csv('/Users/dequeishadiggs/Documents/DIS-9902A/Chapter3_Week4/Notes/Data/CSV/Critical Facilities/Logistic_Nodes/Hospitals.csv')
-ra_df = pd.read_csv('/Users/dequeishadiggs/Documents/DIS-9902A/Chapter3_Week4/Notes/Data/CSV/Critical Facilities/Logistic_Nodes/Relief Agencies.csv')
-rsig_df = pd.read_csv('/Users/dequeishadiggs/Documents/DIS-9902A/Chapter3_Week4/Notes/Data/CSV/Critical Facilities/Logistic_Nodes/Risk Shelter Inventory - General.csv')
-rsipf_df = pd.read_csv('/Users/dequeishadiggs/Documents/DIS-9902A/Chapter3_Week4/Notes/Data/CSV/Critical Facilities/Logistic_Nodes/Risk Shelter Inventory - Pet Friendly.csv')
-rsisn_df = pd.read_csv('/Users/dequeishadiggs/Documents/DIS-9902A/Chapter3_Week4/Notes/Data/CSV/Critical Facilities/Logistic_Nodes/Risk Shelter Inventory - Special Needs.csv')
+airpri_df = pd.read_csv('/workspaces/Hurricane-Idalia-DES-Data/Critical Facilities/Logistic_Nodes/Airports - Private.csv')
+airpub_df = pd.read_csv('/workspaces/Hurricane-Idalia-DES-Data/Critical Facilities/Logistic_Nodes/Airports - Public.csv')
+drcm_df = pd.read_csv('/workspaces/Hurricane-Idalia-DES-Data/Critical Facilities/Logistic_Nodes/Disaster Recovery Centers - Mobile.csv')
+drc_df = pd.read_csv('/workspaces/Hurricane-Idalia-DES-Data/Critical Facilities/Logistic_Nodes/Disaster Recovery Centers.csv')
+prisch_df = pd.read_csv('/workspaces/Hurricane-Idalia-DES-Data/Critical Facilities/Logistic_Nodes/Emergency Medical Services.csv')
+pubsch_df = pd.read_csv('/workspaces/Hurricane-Idalia-DES-Data/Critical Facilities/Logistic_Nodes/Public Schools.csv')
+emf_df = pd.read_csv('/workspaces/Hurricane-Idalia-DES-Data/Critical Facilities/Logistic_Nodes/Emergency Medical Services.csv')
+eoc_df = pd.read_csv('/workspaces/Hurricane-Idalia-DES-Data/Critical Facilities/Logistic_Nodes/Emergency Operations Center.csv')
+hf_df = pd.read_csv('/workspaces/Hurricane-Idalia-DES-Data/Critical Facilities/Logistic_Nodes/Healthcare Facilities.csv')
+hos_df = pd.read_csv('/workspaces/Hurricane-Idalia-DES-Data/Critical Facilities/Logistic_Nodes/Hospitals.csv')
+ra_df = pd.read_csv('/workspaces/Hurricane-Idalia-DES-Data/Critical Facilities/Logistic_Nodes/Relief Agencies.csv')
+rsig_df = pd.read_csv('/workspaces/Hurricane-Idalia-DES-Data/Critical Facilities/Logistic_Nodes/Risk Shelter Inventory - General.csv')
+rsipf_df = pd.read_csv('/workspaces/Hurricane-Idalia-DES-Data/Critical Facilities/Logistic_Nodes/Risk Shelter Inventory - Pet Friendly.csv')
+rsisn_df = pd.read_csv('/workspaces/Hurricane-Idalia-DES-Data/Critical Facilities/Logistic_Nodes/Risk Shelter Inventory - Special Needs.csv')
 
 #%%
 ############################################Data Cleaning & Data Prepration############################################
