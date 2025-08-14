@@ -26,7 +26,7 @@ import numpy as np
 import pandas as pd
 from scipy import stats
 from sklearn.model_selection import KFold
-from mpl_toolkits import Basemap
+from mpl_toolkits.basemap import Basemap
 from matplotlib.patches import Patch
 from matplotlib.lines import Line2D
 from adjustText import adjust_text
