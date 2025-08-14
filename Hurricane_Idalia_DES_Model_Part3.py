@@ -6,8 +6,14 @@ Created on Mon Jan  6 10:55:30 2025
 @author: dequeishadiggs
 """
 #%%
-# Importing Packages
+# Installing packages
+! pip3 install simpy
+! pip install pyshp
+! pip install matplotlib
+! pip install basemap-data-hires
+! pip install adjustText
 
+# Importing Packages
 import random
 import simpy
 import math
@@ -20,7 +26,7 @@ import numpy as np
 import pandas as pd
 from scipy import stats
 from sklearn.model_selection import KFold
-from mpl_toolkits.basemap import Basemap
+from mpl_toolkits import Basemap
 from matplotlib.patches import Patch
 from matplotlib.lines import Line2D
 from adjustText import adjust_text
