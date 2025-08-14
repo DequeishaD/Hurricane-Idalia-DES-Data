@@ -307,7 +307,7 @@ class ResponseVehicle:
 # outside of the affdected areas(Blue)
 """
 # Defining the path to the County Boundary Shapefile
-county_shapefile_path = "/workspaces/Hurricane-Idalia-DES-Data/FL_Counties/tl_2023_12_cousub.shp"
+county_shapefile_path = '/workspaces/Hurricane-Idalia-DES-Data/FL_Counties/tl_2023_12_cousub.shp'
 
 # Creating a function that plots the simulation and affected areas
 def simulation_and_affected_areas(env, evacuation_locations, sites, shelters, vehicles, county_shapefile_path):
@@ -629,7 +629,7 @@ mobilel_df['network_paths'] = ['Path_A', 'Path_B', 'Path_A', 'Path_B', 'Path_A',
 # This portion of the script is used to visualize Hurricane Idalia Shelters and Affected Areas 
 
 # Defining the path to the County Boundary Shapefiles
-county_shapefile_path = "/workspaces/Hurricane-Idalia-DES-Data/FL_Counties/tl_2023_12_cousub.shp"
+county_shapefile_path = '/workspaces/Hurricane-Idalia-DES-Data/FL_Counties/tl_2023_12_cousub.shp'
 
 # Opening the shapefile from the county_shapefile_path
 sf = shapefile.Reader(county_shapefile_path)
