@@ -1,6 +1,5 @@
-﻿Capabilities,Capacity,Speed,Throughput (Distance)
-1,24328.00,40,300
-2,16000.00,50,480
-3,145505.00,530,4700
-4,10000.00,70,30
-5,14000.00,70,30
+Capabilities,Capacity,Speed,Throughput (Distance)
+1,24328.0,40,300
+2,16000.0,50,480
+4,10000.0,70,30
+5,14000.0,70,30
