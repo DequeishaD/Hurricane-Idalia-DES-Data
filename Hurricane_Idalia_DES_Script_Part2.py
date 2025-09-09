@@ -350,38 +350,295 @@ plt.legend(title='Mobile Logistic Nodes')
 plt.tight_layout()
 plt.show()
 
-
 #%%
-# Identifying the interaction among Planned Network Path Locations, Speed, and Throughput
+# Identifying the interaction among Planned Network Path Locations, Speed and Throughput
 pnst1_df = sm.OLS.from_formula('Throughput ~ FACILITY_TYPE * Speed', data = pnst_df).fit()
 
-# Creating the interaction plots
-fig5, ax = plt.subplots()
-sm.graphics.interaction_plot(pnst_df['FACILITY_TYPE'], pnst_df['Speed'], pnst_df['Throughput'], ax=ax)
+# Printing model summaries
+print(pnst1_df.summary())
+
+# Creating a DataFrame of all combinations for predictions
+planpnl = pnst_df['FACILITY_TYPE'].unique()
+speeds = np.sort(pnst_df['Speed'].unique())
+pred_grid = pd.DataFrame(list(product(planpnl, speeds)), columns=['FACILITY_TYPE', 'Speed'])
+
+# Predicting throughput and get confidence intervals
+predictions = pnst1_df.get_prediction(pred_grid)
+pred_summary = predictions.summary_frame(alpha=0.05)  # 95% CI
+pred_grid['Predicted_Throughput'] = pred_summary['mean']
+pred_grid['CI_lower'] = pred_summary['mean_ci_lower']
+pred_grid['CI_upper'] = pred_summary['mean_ci_upper']
+
+# Extracting interaction p-value
+interaction_terms = pnst1_df.pvalues.filter(like=':')  # all interaction terms
+interaction_significance = "Significant" if (interaction_terms < 0.05).any() else "Not significant"
+
+# Determine Moble Logistic Nodes with largest slope effect
+slopes = {}
+for ft in planpnl:
+    subset = pred_grid[pred_grid['FACILITY_TYPE'] == ft]
+    slope = np.polyfit(subset['Speed'], subset['Predicted_Throughput'], 1)[0]
+    slopes[ft] = slope
+strongest_ft = max(slopes, key=slopes.get)
+
+# Plottig raw data and predicted lines with confidence intervals
+plt.figure(figsize=(10,6))
+
+# Raw data points
+sns.scatterplot(
+    data=pnst_df,
+    x='Speed',
+    y='Throughput',
+    hue='FACILITY_TYPE',
+    style='FACILITY_TYPE',
+    alpha=0.6,
+    s=70
+)
+
+# Predicted lines with shaded confidence intervals
+for ft in planpnl:
+    subset = pred_grid[pred_grid['FACILITY_TYPE'] == ft]
+    plt.plot(subset['Speed'], subset['Predicted_Throughput'], marker='o', label=f'{ft} (predicted)')
+    plt.fill_between(
+        subset['Speed'],
+        subset['CI_lower'],
+        subset['CI_upper'],
+        alpha=0.2
+    )
+
+# Adding textual summary
+plt.text(
+    x=min(speeds),
+    y=max(pred_grid['Predicted_Throughput']) * 0.95,
+    s=f'Interaction: {interaction_significance}\nFPlanned Network Path Locations with strongest Speed effect: {strongest_ft}',
+    fontsize=10,
+    bbox=dict(facecolor='white', alpha=0.6)
+)
+
+plt.title('Interaction of FPlanned Network Path Locations and Speed on Throughput\nPlanned Network Path Locations')
+plt.xlabel('Speed')
+plt.ylabel('Throughput')
+plt.legend(title='Planned Network Path Locations')
+plt.tight_layout()
 plt.show()
 
-# Identifying the interaction among Planned Network Path Locations, Speed, and Capabilities
+""""""
+
+# Identifying the interaction among Planned Network Path Locations, Speed and Capabilities
 pnst2_df = sm.OLS.from_formula('Capabilities~ FACILITY_TYPE * Speed', data = pnst_df).fit()
 
-# Creating the interaction plots
-fig6, ax = plt.subplots()
-sm.graphics.interaction_plot(pnst_df['FACILITY_TYPE'], pnst_df['Speed'], pnst_df['Capabilities'], ax=ax)
+# Printing model summaries
+print(pnst2_df.summary())
+
+# Creating a DataFrame of all combinations for predictions
+planpnl = pnst_df['FACILITY_TYPE'].unique()
+speeds = np.sort(pnst_df['Speed'].unique())
+pred_grid = pd.DataFrame(list(product(planpnl, speeds)), columns=['FACILITY_TYPE', 'Speed'])
+
+# Predicting Capabilities and get confidence intervals
+predictions = pnst2_df.get_prediction(pred_grid)
+pred_summary = predictions.summary_frame(alpha=0.05)  # 95% CI
+pred_grid['Predicted_Capabilities'] = pred_summary['mean']
+pred_grid['CI_lower'] = pred_summary['mean_ci_lower']
+pred_grid['CI_upper'] = pred_summary['mean_ci_upper']
+
+# Extracting interaction p-value
+interaction_terms = pnst2_df.pvalues.filter(like=':')  # all interaction terms
+interaction_significance = "Significant" if (interaction_terms < 0.05).any() else "Not significant"
+
+# Determine Moble Logistic Nodes with largest slope effect
+slopes = {}
+for ft in planpnl:
+    subset = pred_grid[pred_grid['FACILITY_TYPE'] == ft]
+    slope = np.polyfit(subset['Speed'], subset['Predicted_Capabilities'], 1)[0]
+    slopes[ft] = slope
+strongest_ft = max(slopes, key=slopes.get)
+
+# Plottig raw data and predicted lines with confidence intervals
+plt.figure(figsize=(10,6))
+
+# Raw data points
+sns.scatterplot(
+    data=pnst_df,
+    x='Speed',
+    y='Capabilities',
+    hue='FACILITY_TYPE',
+    style='FACILITY_TYPE',
+    alpha=0.6,
+    s=70
+)
+
+# Predicted lines with shaded confidence intervals
+for ft in planpnl:
+    subset = pred_grid[pred_grid['FACILITY_TYPE'] == ft]
+    plt.plot(subset['Speed'], subset['Predicted_Capabilities'], marker='o', label=f'{ft} (predicted)')
+    plt.fill_between(
+        subset['Speed'],
+        subset['CI_lower'],
+        subset['CI_upper'],
+        alpha=0.2
+    )
+
+# Adding textual summary
+plt.text(
+    x=min(speeds),
+    y=max(pred_grid['Predicted_Capabilities']) * 0.95,
+    s=f'Interaction: {interaction_significance}\nFPlanned Network Path Locations with strongest Speed effect: {strongest_ft}',
+    fontsize=10,
+    bbox=dict(facecolor='white', alpha=0.6)
+)
+
+plt.title('Interaction of Planned Network Path Locations and Speed on Capabilities\nPlanned Network Path Locations')
+plt.xlabel('Speed')
+plt.ylabel('Capabilities')
+plt.legend(title='Planned Network Path Locations', loc='lower right')  
+plt.tight_layout()
 plt.show()
 
-# Identifying the interaction among Planned Network Path Locations, Capacity, and Capabilities
+""""""
+
+# Identifying the interaction among Planned Network Path Locations, Capacity and Capabilities
 pnst3_df = sm.OLS.from_formula('Capacity ~ FACILITY_TYPE * Capabilities', data = pnst_df).fit()
 
-# Creating the interaction plots
-fig7, ax = plt.subplots()
-sm.graphics.interaction_plot(pnst_df['FACILITY_TYPE'], pnst_df['Capabilities'], pnst_df['Capacity'], ax=ax)
+# Printing model summaries
+print(pnst3_df.summary())
+
+# Creating a DataFrame of all combinations for predictions
+planpnl = pnst_df['FACILITY_TYPE'].unique()
+Capabilities = np.sort(pnst_df['Capabilities'].unique())
+pred_grid = pd.DataFrame(list(product(planpnl, Capabilities)), columns=['FACILITY_TYPE', 'Capabilities'])
+
+# Predicting Capacity and get confidence intervals
+predictions = pnst3_df.get_prediction(pred_grid)
+pred_summary = predictions.summary_frame(alpha=0.05)  # 95% CI
+pred_grid['Predicted_Capacity'] = pred_summary['mean']
+pred_grid['CI_lower'] = pred_summary['mean_ci_lower']
+pred_grid['CI_upper'] = pred_summary['mean_ci_upper']
+
+# Extracting interaction p-value
+interaction_terms = pnst3_df.pvalues.filter(like=':')  # all interaction terms
+interaction_significance = "Significant" if (interaction_terms < 0.05).any() else "Not significant"
+
+# Determine Moble Logistic Nodes with largest slope effect
+slopes = {}
+for ft in planpnl:
+    subset = pred_grid[pred_grid['FACILITY_TYPE'] == ft]
+    slope = np.polyfit(subset['Capabilities'], subset['Predicted_Capacity'], 1)[0]
+    slopes[ft] = slope
+strongest_ft = max(slopes, key=slopes.get)
+
+# Plottig raw data and predicted lines with confidence intervals
+plt.figure(figsize=(10,6))
+
+# Raw data points
+sns.scatterplot(
+    data=pnst_df,
+    x='Capabilities',
+    y='Capacity',
+    hue='FACILITY_TYPE',
+    style='FACILITY_TYPE',
+    alpha=0.6,
+    s=70
+)
+
+# Predicted lines with shaded confidence intervals
+for ft in planpnl:
+    subset = pred_grid[pred_grid['FACILITY_TYPE'] == ft]
+    plt.plot(subset['Capabilities'], subset['Predicted_Capacity'], marker='o', label=f'{ft} (predicted)')
+    plt.fill_between(
+        subset['Capabilities'],
+        subset['CI_lower'],
+        subset['CI_upper'],
+        alpha=0.2
+    )
+
+# Adding textual summary
+plt.text(
+    x=min(Capabilities),
+    y=max(pred_grid['Predicted_Capacity']) * 0.95,
+    s=f'Interaction: {interaction_significance}\nFPlanned Network Path Locations with strongest Capabilities effect: {strongest_ft}',
+    fontsize=10,
+    bbox=dict(facecolor='white', alpha=0.6)
+)
+
+plt.title('Interaction of Planned Network Path Locations and Capabilities on Capacity\nPlanned Network Path Locations')
+plt.xlabel('Capabilities')
+plt.ylabel('Capacity')
+plt.legend(title='Planned Network Path Locations')  
+plt.tight_layout()
 plt.show()
 
-# Identifying the interaction among Planned Network Path Locations, Capacity, and Throughput
-pnst8_df = sm.OLS.from_formula('Throughput ~ FACILITY_TYPE * Capacity', data = pnst_df).fit()
+""""""
 
-# Creating the interaction plots
-fig8, ax = plt.subplots()
-sm.graphics.interaction_plot(pnst_df['FACILITY_TYPE'], pnst_df['Capacity'], pnst_df['Throughput'], ax=ax)
+# Identifying the interaction among Planned Network Path Locations, Capacity and Throughput
+pnst4_df = sm.OLS.from_formula('Throughput ~ FACILITY_TYPE * Capacity', data = pnst_df).fit()
+
+# Printing model summaries
+print(pnst4_df.summary())
+
+# Creating a DataFrame of all combinations for predictions
+planpnl = pnst_df['FACILITY_TYPE'].unique()
+Capacity = np.sort(pnst_df['Capacity'].unique())
+pred_grid = pd.DataFrame(list(product(planpnl, Capacity)), columns=['FACILITY_TYPE', 'Capacity'])
+
+# Predicting throughput and get confidence intervals
+predictions = pnst4_df.get_prediction(pred_grid)
+pred_summary = predictions.summary_frame(alpha=0.05)  # 95% CI
+pred_grid['Predicted_Throughput'] = pred_summary['mean']
+pred_grid['CI_lower'] = pred_summary['mean_ci_lower']
+pred_grid['CI_upper'] = pred_summary['mean_ci_upper']
+
+# Extracting interaction p-value
+interaction_terms = pnst4_df.pvalues.filter(like=':')  # all interaction terms
+interaction_significance = "Significant" if (interaction_terms < 0.05).any() else "Not significant"
+
+# Determine Moble Logistic Nodes with largest slope effect
+slopes = {}
+for ft in planpnl:
+    subset = pred_grid[pred_grid['FACILITY_TYPE'] == ft]
+    slope = np.polyfit(subset['Capacity'], subset['Predicted_Throughput'], 1)[0]
+    slopes[ft] = slope
+strongest_ft = max(slopes, key=slopes.get)
+
+# Plottig raw data and predicted lines with confidence intervals
+plt.figure(figsize=(10,6))
+
+# Raw data points
+sns.scatterplot(
+    data=pnst_df,
+    x='Capacity',
+    y='Throughput',
+    hue='FACILITY_TYPE',
+    style='FACILITY_TYPE',
+    alpha=0.6,
+    s=70
+)
+
+# Predicted lines with shaded confidence intervals
+for ft in planpnl:
+    subset = pred_grid[pred_grid['FACILITY_TYPE'] == ft]
+    plt.plot(subset['Capacity'], subset['Predicted_Throughput'], marker='o', label=f'{ft} (predicted)')
+    plt.fill_between(
+        subset['Capacity'],
+        subset['CI_lower'],
+        subset['CI_upper'],
+        alpha=0.2
+    )
+
+# Adding textual summary
+plt.text(
+    x=min(Capacity),
+    y=max(pred_grid['Predicted_Throughput']) * 0.95,
+    s=f'Interaction: {interaction_significance}\nFPlanned Network Path Locations with strongest Capacity effect: {strongest_ft}',
+    fontsize=10,
+    bbox=dict(facecolor='white', alpha=0.6)
+)
+
+plt.title('Interaction of FPlanned Network Path Locations and Capacity on Throughput\nPlanned Network Path Locations')
+plt.xlabel('Capacity')
+plt.ylabel('Throughput')
+plt.legend(title='Planned Network Path Locations' , loc= 'lower right')
+plt.tight_layout()
 plt.show()
 
 #%%
