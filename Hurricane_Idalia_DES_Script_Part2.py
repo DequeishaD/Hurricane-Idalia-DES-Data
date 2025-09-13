@@ -50,7 +50,7 @@ pnst_df = pd.merge(pnpl_df,emn_df, how='inner', on='id').drop_duplicates().drop(
     .rename(columns={'Throughput (Distance)' : 'Throughput'})
     
 # Dropping unnecessary columns from pnst_df
-pnst_df = pnst_df.drop(columns=['fb_Longitude', 'fb_Latitude','Unnamed: 0'])
+pnst_df = pnst_df.drop(columns=['fb_Longitude', 'fb_Latitude'])
 
 # Dropping rows with NA values
 #pnst_df = pnst_df.dropna()
@@ -652,9 +652,6 @@ pnst_df['interaction'] = pnst_df['Speed'] * pnst_df['Throughput']
 # Evacuation Mean(mobile speed and capacity), Evacuation Nodes(evacuation zones by county), 
 # And Logistic Nodes and formatting the results into a table, Boxplots, and dropping unnecessary columns.
 
-# Dropping Unessary Columns
-mln_df = mln_df.drop(columns=['Unnamed: 0'])
-
 # Generating Five-Number Summaries
 mln_summary = mln_df.describe()
 
@@ -676,9 +673,6 @@ plt.ylabel('Values')
 plt.show()
 
 """"""""""""""""""
-
-# Dropping Unessary Columns
-pnpl_df = pnpl_df.drop(columns=['Unnamed: 0'])
 
 # Generating Five-Number Summaries
 pnpl_summary = pnpl_df.describe()
@@ -745,8 +739,6 @@ plt.ylabel('Values')
 plt.show()
 
 """"""""""""""""""
-# Dropping Unessary Columns
-ln_df = ln_df.drop(columns=['Unnamed: 0'])
 
 # Generating Five-Number Summaries
 ln_summary = ln_df.describe()
@@ -770,9 +762,6 @@ plt.show()
 
 """"""""""""""""""
 
-# Dropping Unessary Columns
-lnh_df = lnh_df.drop(columns=['Unnamed: 0'])
-
 # Generating Five-Number Summaries
 lnh_summary = lnh_df.describe()
 
@@ -794,9 +783,6 @@ plt.ylabel('Values')
 plt.show()
 
 """"""""""""""""""
-
-# Dropping Unessary Columns
-lns_df = lns_df.drop(columns=['Unnamed: 0'])
 
 # Generating Five-Number Summaries
 lns_summary = lns_df.describe()
