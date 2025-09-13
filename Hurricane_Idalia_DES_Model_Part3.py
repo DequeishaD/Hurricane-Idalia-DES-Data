@@ -145,7 +145,12 @@ print(em_df.describe())
 # Defining the environment, by creating the environment class and initializing capabilities, locations, 
 # sites, and shelters.
 # Class for Simulation of Hurricane Idalia
-class HurricaneIdaliaSimulation:
+# Telling the Simulation to run (iterate) 10 times
+# Class for Simulation of Hurricane Idalia
+num_runs = 10
+
+for i in range(1, num_runs + 1):
+   class HurricaneIdaliaSimulation:
     def __init__(self, env, capabilities, evacuation_locations, sites, shelters):
         self.env = env
         self.capabilities = []
@@ -737,9 +742,26 @@ else:
         
         # Depicting the plot
         plt.show()
+                # Plotting the County Boundary and specifing parameters for visulization
+                x_map, y_map = bm(x_coords, y_coords)
+                ax.plot(x_map, y_map, color='black', linewidth=0.5, linestyle='-', marker=None)
+                if i % 100 == 0:  # print every 100 runs
+                    print(f"Simulation run: {i}/{num_runs}")
+                
+        # Creating a custom legend with Shelters and Affected Areas
+        plt.legend(handles=[shelters_plot, affected_area_patch], loc='lower left', fontsize=12)
+
+        # Defining the Plot Labels and Title
+        ax.set_title("Hurricane Idalia Shelters and Affected Areas Map", fontsize=14)
+        
+        # Depicting the plot
+        plt.show()
 
     # Plotting the Hurricane Idalia Shelters and Affected Areas
     county_shelters_affected_areas(county_shapefile_path, shelters_df, affected_areas)
+    
+# Printing how many time s the simulation is running    
+print(num_runs)
     
 #%%
 ###########################################Model Validation and Hyperparameter Tuning################################
